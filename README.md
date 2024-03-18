@@ -12,7 +12,9 @@ If you also have a 1090 dongle connected to your Stratux and you enable the "Sho
 
 <ins>**Running the python program without Stratux**</ins>
 
-If you prefer not to run Stratux to have UAT data fed into your VRS, you can install the necessary programs on a raspberry pi without having Stratux.  You just need three files from Stratux along with my python program and then install dump978-fa.  Running script [UAT-data-for-VRS.sh](https://github.com/egite/Stratux-GDL90-to-SBS-Converter-for-Virtual-Radar-Server/releases/download/v1.0/UAT-data-for-VRS.sh) will do that.  You will of course need an SDR dongle for 978 MHz UAT reception plugged in to the pi and you need to know its serial number. 
+If you prefer not to run Stratux to have UAT data fed into your VRS, you can install the necessary programs on a raspberry pi without having Stratux.  You just need three files from Stratux along with my python program and then install dump978-fa.  To do that, download to your pi then run the script [UAT-data-for-VRS.sh](https://github.com/egite/Stratux-GDL90-to-SBS-Converter-for-Virtual-Radar-Server/releases/download/v1.0/UAT-data-for-VRS.sh) by running the below line on your pi.  You will of course need an SDR dongle for 978 MHz UAT reception plugged in to the pi and you need to know its serial number. 
+
+ - cd ~pi ; wget -N https://github.com/egite/Stratux-GDL90-to-SBS-Converter-for-Virtual-Radar-Server/releases/download/v1.0/UAT-data-for-VRS.sh ; chmod 755 UAT-data-for-VRS.sh ; ./UAT-data-for-VRS.sh
 
 After running my installion script, edit the configuration in /etc/default/dump978-fa appropriate to your setup (specifically dongle serial number and RECEIVER_LAT=xx.xxx and RECEIVER_LON=-xx.xxx appropriate to your location).  Then creater a new receiver in VRS and point it to your pi's port 33333 to get a solid and stable UAT feed into your VRS.
 
