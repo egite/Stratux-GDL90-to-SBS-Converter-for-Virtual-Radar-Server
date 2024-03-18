@@ -17,7 +17,7 @@ If you prefer not to run Stratux to have UAT data fed into your VRS, you can ins
 
  - cd ~pi ; wget -N https://github.com/egite/Stratux-GDL90-to-SBS-Converter-for-Virtual-Radar-Server/releases/download/v1.0/UAT-data-for-VRS.sh ; chmod 755 UAT-data-for-VRS.sh ; ./UAT-data-for-VRS.sh
 
-After running my installation script, edit the configuration in /etc/default/dump978-fa appropriate to your setup (specifically dongle serial number and RECEIVER_LAT=xx.xxx and RECEIVER_LON=-xx.xxx appropriate to your location).  Then create a new receiver in VRS and point it to your pi's port 33333 to get a solid and stable UAT feed into your VRS.
+After running my installation script, edit the configuration in /etc/default/dump978-fa appropriate to your setup (specifically dongle serial number and RECEIVER_LAT=xx.xxx and RECEIVER_LON=-xx.xxx appropriate to your location) then reboot your pi.  Finally, create a new receiver in VRS and point it to your pi's port 33333 to get a solid and stable UAT feed into your VRS.
 
 The installation includes entries in the crontab for monitoring scripts:
   - [GDL90_to_SBS-check.sh](https://github.com/egite/Stratux-GDL90-to-SBS-Converter-for-Virtual-Radar-Server/releases/download/v1.0/GDL90_to_SBS-check.sh) .  This script starts the python program and restarts it if it fails.  Dates and times of any restarts are captured in ~pi/GDL90_to_SBS_failures.txt</li>
