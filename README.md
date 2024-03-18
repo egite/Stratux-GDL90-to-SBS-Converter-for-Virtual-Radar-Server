@@ -21,7 +21,7 @@ After running my installation script, edit the configuration in /etc/default/dum
 
 The installation includes entries in the crontab for monitoring scripts:
 <ol>
-  <li> [GDL90_to_SBS-check.sh](https://github.com/egite/Stratux-GDL90-to-SBS-Converter-for-Virtual-Radar-Server/releases/download/v1.0/GDL90_to_SBS-check.sh).  This script starts the python program and restarts it if it fails.  Dates and times of any restarts are captured in ~pi/GDL90_to_SBS_failures.txt</li>
+  <li> The [GDL90_to_SBS-check.sh](https://github.com/egite/Stratux-GDL90-to-SBS-Converter-for-Virtual-Radar-Server/releases/download/v1.0/GDL90_to_SBS-check.sh).  This script starts the python program and restarts it if it fails.  Dates and times of any restarts are captured in ~pi/GDL90_to_SBS_failures.txt</li>
   <li> [UAT.sh](https://github.com/egite/Stratux-GDL90-to-SBS-Converter-for-Virtual-Radar-Server/releases/download/v1.0/UAT.sh).  This script starts "gen_gdl90" after 30 seconds then restarts it if it fails.  Dates and times of any restarts are captured in ~pi/gen_gdl90_failures.txt</li>
   <li> [dump978-check.sh](https://github.com/egite/Stratux-GDL90-to-SBS-Converter-for-Virtual-Radar-Server/releases/download/v1.0/dump978-check.sh).  This script monitors dump978-fa status and restarts it if necessary.  After too many failures, it will reboot the pi.  Dates and times of any failures between reboots are captured in ~pi/dump978-fa_failures.txt whereas dates and times of any associated reboots are captures in ~pi/dump978-fa_reboots.txt.  You can modify this script if you prefer different behavior.</li></li>
 </ol>
