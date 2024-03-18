@@ -5,11 +5,11 @@ Getting UAT data into Virtual Radar Server continues to be a challenge.  The too
 Stratux is a well-tested platform for receiving and decoding UAT data, however its output format is GDL90 which is suitable for avionics, not VRS.
 To use a Stratux or use its tools to feed VRS, a format converter from GDL90 to SBS is needed.  The python script GDL90_to_SBS.py does just that, taking the GDL90 data and making it available on TCP port 33333 in SBS format for VRS.  No changes to the Stratux GDL90 output are made.  The script can work on a pi running Stratux or a pi without Stratux.  Choose your option below.
 
-<ins>**Running the script on a Stratux**</ins>
+<ins>**Running the python script on a Stratux**</ins>
 
 If you are running a local Stratux box, you can simply install the python script on the Stratux and point VRS to port 33333 to get all traffic information from Stratux.  I recommend adding the program to be run at reboot in the crontab.  Make sure developer mode and persistent logging are enabled when you install the program.  You can disable those after installation.  If you also have a 1090 dongle connected to your Stratux and you enable the "Show Traffic Source in Callsign" option in Stratux's settings, my python program will filter out all non-ADS-B traffic and only pass along UAT traffic on port 33333.
 
-<ins>**Running the script without Stratux**</ins>
+<ins>**Running the python script without Stratux**</ins>
 
 If you prefer not to run Stratux to have UAT data fed into your VRS, you can install the necessary programs on a raspberry pi without having Stratux.  You just need three files from Stratux along with my python script and then install dump978-fa.  Running script 'UAT-data-for-VRS.sh' will do that.  You will of course need an SDR dongle for 978 MHz UAT reception plugged in to the pi and you need to know its serial number. 
 
