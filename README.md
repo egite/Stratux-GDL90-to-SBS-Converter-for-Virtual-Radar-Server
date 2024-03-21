@@ -11,6 +11,8 @@ If you are running a local Stratux box, you can simply download the python scrip
 
 If you also have a 1090 dongle connected to your Stratux and you enable the "Show Traffic Source in Callsign" option in Stratux's settings, my python program will filter out all non-ADS-B traffic and only pass along UAT traffic on port 33333.  You can also point your VRS to Stratux's port 30003 to have an ADS-B-only feed, though that's only useful if you want to have separate UAT and ADS-B feeds into your VRS since the python script's feed on port 33333 will have both UAT and ADS-B traffic (unless you enable "Show Traffic Source in Callsign" as explained previously).
 
+If you want a self-contained copy of VRS running on your Stratux with complete offline maps and aircraft database, go here:  [Virtual Radar Server on Stratux](https://github.com/egite/Virtual-Radar-Server-on-Stratux).
+
 <ins>**Running the python program without Stratux**</ins>
 
 If you prefer not to run Stratux to have UAT data fed into your VRS, you can install the necessary programs on a raspberry pi without having Stratux to get UAT data into VRS.  You just need three files from Stratux along with my python program and then install dump978-fa.  To do that, download to your pi then run the script [UAT-data-for-VRS.sh](https://github.com/egite/Stratux-GDL90-to-SBS-Converter-for-Virtual-Radar-Server/releases/download/v1.0/UAT-data-for-VRS.sh) by running the below line on your pi.  You will of course need an SDR dongle for 978 MHz UAT reception plugged in to the pi and you need to know its serial number. 
