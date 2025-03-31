@@ -3,7 +3,7 @@
 Getting UAT data into Virtual Radar Server continues to be a challenge.  The tools available can be difficult to install and can provide inconsistent and unreliable data to VRS.  
 
 Stratux is a well-tested platform for receiving and decoding UAT data, however its output format is GDL90 which is suitable for avionics, not VRS.
-To use a Stratux or use its tools to feed VRS, a format converter from GDL90 to SBS is needed.  The python program [GDL90_to_SBS.py](https://github.com/egite/Stratux-GDL90-to-SBS-Converter-for-Virtual-Radar-Server/releases/download/v1.0/GDL90_to_SBS.py) does just that, taking the GDL90 data and making it available on TCP port 33333 in SBS format for VRS.  No changes to the Stratux GDL90 output are made.  The program can work on a pi running Stratux or a pi without Stratux.  Choose your option below.
+To use a Stratux or use its tools to feed VRS, a format converter from GDL90 to SBS is needed.  The python program [GDL90_to_SBS.py](https://github.com/egite/Stratux-GDL90-to-SBS-Converter-for-Virtual-Radar-Server/releases/download/v1.0/GDL90_to_SBS.py) does just that, taking the GDL90 data and making it available on a specified TCP port (*e.g.*, 33333) in SBS format for VRS.  No changes to the Stratux GDL90 output are made.  The program can work on a pi running Stratux or a pi without Stratux.  Choose your option below.
 
 <ins>**Running the python program on a Stratux**</ins>
 
