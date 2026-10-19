@@ -145,7 +145,8 @@ def UAT_Passthrough(data):
 
     SBS = ""
 
-    # flag + ID + 3 time-of-reception bytes, then an 18-byte (basic) or 34-byte (long) payload
+    # flag + ID + 3 time-of-reception bytes, then an 18-byte (basic) or 34-byte (long) payload.
+    # Stratux pads both to 432 bytes; the padding is ignored.
     if data[1] == 31:
         a = 39
     else:
@@ -347,7 +348,7 @@ print("Connection from:", str(addr))
 
 # This is the main program loop.  Everything above are the functions
 while True:
-    data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
+    data, addr = sock.recvfrom(65535) # Stratux packs several messages per packet, sometimes past 1 KB
     for msg in deframe(data):
         if msg[1] == 31 or msg[1] == 30:   # UAT long and basic reports only
            UAT_Passthrough(msg)
