@@ -7,8 +7,8 @@
 # SBS format.  It makes those data available on a specified TCP port (e.g., 33333). 
 # Only UAT basic and UAT long reports (978 MHz) from aircraft are translated to SBS format.  Stratux's
 # ownship and traffic reports are ignored: the traffic report mixes in 1090 targets, which VRS already
-# gets from dump1090, and every 978 target in it also arrives as a basic or long report.  FIS-B uplinks,
-# surface vehicles and fixed beacons are ignored too.
+# gets from dump1090, and every 978 target in it also arrives as a basic or long report.  FIS-B uplinks
+# are ignored too.
 # Useful only for U.S.-based pilots.
 #
 # It is intended to allow Virtual Radar Server to run alongside Stratux and see all data including UAT,
@@ -155,8 +155,6 @@ def UAT_Passthrough(data):
 
     MDB = (data[5]&248) >> 3   #message data block type code
     AQ = data[5]&7  # address qualifier
-    if AQ not in (0, 1, 2, 3, 6):   # aircraft only: ADS-B, TIS-B/ADS-R; not surface vehicles (4) or fixed beacons (5)
-        return
 
     if data[6]<16:
         ICAO="0"+hex(data[6])[2:].upper()
@@ -173,12 +171,8 @@ def UAT_Passthrough(data):
     else:
         ICAO=ICAO+hex(data[8])[2:].upper()
 
-    if data[1]==31:
-        ans = sum(data[22:33])
-    else:
-        ans = 0
-
-    if data[1]==31 and ans > 0:     #only message 31 has the mode status
+    # only long payload types 1 and 3 carry the mode status; an all-zero call sign field isn't one
+    if data[1]==31 and (MDB == 1 or MDB == 3) and sum(data[22:28]) > 0:
         n = data[22]*256 + data[23]
         emitter = n//1600%40
         Callsign = Callsign_Array[n//40%40]
@@ -253,9 +247,10 @@ def UAT_Passthrough(data):
     else:
         Speed_V = 0
 
-    # this is only valid for the quadrant of the globe that I live in
     Latitude = data[9]*32768 + data[10]*128 + ((data[11]&254) >> 1)
     Latitude = Latitude*0.000021457672
+    if Latitude > 90:
+        Latitude = Latitude - 180
     Longitude = (data[11]&1)*8388608 + data[12]*32768 + data[13]*128 + ((data[14]&254) >> 1)
     Longitude = Longitude*0.000021457672
     if Longitude > 180:
